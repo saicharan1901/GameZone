@@ -1,0 +1,32 @@
+{
+  "name": "se",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "firebase": "^10.6.0",
+    "framer-motion": "^10.16.5",
+    "next": "13.5.4",
+    "random-words": "^2.0.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-firebase-hooks": "^5.1.1",
+    "react-horizontal-stacked-bar-chart": "^8.15.2",
+    "react-icons": "^4.12.0",
+    "react-modal": "^3.16.1",
+    "react-toastify": "^9.1.3",
+    "react-typewriter-effect": "^1.1.0",
+    "text-clipper": "^2.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10",
+    "postcss": "^8",
+    "tailwindcss": "^3"
+  }
+}

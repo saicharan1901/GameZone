@@ -1,0 +1,13 @@
+/* rootLayout.module.css */
+.root {
+    position: relative;
+  }
+  
+  .content {
+    /* Add padding or margin as needed to create space for the Navbar */
+    padding-top: 60px; /* Adjust this value to match your Navbar height */
+    /* Other styling for your main content */
+  }
+  
+  /* Style your Navbar as needed */
+  
