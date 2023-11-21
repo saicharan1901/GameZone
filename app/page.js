@@ -23,7 +23,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen mt-10">
+    <div className="min-h-screen mt-24">
       <Navbar />
 
       <div className="container mx-auto py-8">
@@ -41,7 +41,7 @@ const Home = () => {
               onClick={login}
               className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded  md:mt-6"
             >
-              Get. Set. Parking!
+              Get. Set. Game!
             </button>
           ) : (
             <Link

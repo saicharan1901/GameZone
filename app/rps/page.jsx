@@ -20,7 +20,7 @@ const Home = () => {
     if (!user) {
       return;
     }
-
+  
     const profileRef = ref(db, `profiles/${user.uid}`);
     const fetchData = async () => {
       const snapshot = await get(profileRef);
@@ -28,11 +28,26 @@ const Home = () => {
         const data = snapshot.val();
         setSells(data.sells || []);
       } else {
-        setSells([]);
+        // If the profile doesn't exist, create a new one
+        const newProfile = {
+          score: 0, // Initial score for a new profile
+          level: 1, // Initial level
+          email: user.email,
+          name: user.displayName,
+        };
+  
+        // Set the new profile data in the database
+        try {
+          await update(profileRef, newProfile);
+          setSells([]); // Assuming sells data is empty for a new profile
+        } catch (error) {
+          console.error('Error creating new profile:', error);
+        }
       }
     };
     fetchData();
   }, [user]);
+  
 
   const updateProfileScore = (score) => {
     if (!user) return;

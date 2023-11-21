@@ -24,6 +24,7 @@ export default function MemoryGame() {
         if (matchedCards.length == 16) {
             setGameOver(true);
 
+
             let points;
 
             if (moves < 20) {
@@ -36,6 +37,7 @@ export default function MemoryGame() {
                 points = 10;
             }
             updateProfileScore(points)
+
         }
     }, [moves]);
 
@@ -82,21 +84,35 @@ export default function MemoryGame() {
 
     useEffect(() => {
         if (!user) {
-            return;
+          return;
         }
-
+      
         const profileRef = ref(db, `profiles/${user.uid}`);
         const fetchData = async () => {
-            const snapshot = await get(profileRef);
-            if (snapshot.exists()) {
-                const data = snapshot.val();
-                setSells(data.sells || []);
-            } else {
-                setSells([]);
+          const snapshot = await get(profileRef);
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            setSells(data.sells || []);
+          } else {
+            // If the profile doesn't exist, create a new one
+            const newProfile = {
+              score: 0, // Initial score for a new profile
+              level: 1, // Initial level
+              email: user.email,
+              name: user.displayName,
+            };
+      
+            // Set the new profile data in the database
+            try {
+              await update(profileRef, newProfile);
+              setSells([]); // Assuming sells data is empty for a new profile
+            } catch (error) {
+              console.error('Error creating new profile:', error);
             }
+          }
         };
         fetchData();
-    }, [user]);
+      }, [user]);
 
     const updateProfileScore = (score) => {
         if (!user) return;
@@ -127,6 +143,10 @@ export default function MemoryGame() {
             .catch((error) => {
                 console.error('Error fetching profile:', error);
             });
+
+
+            window.alert(`You've won! Please reset to play again`)
+
     };
 
 
